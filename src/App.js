@@ -1,20 +1,52 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  constructor() {
+    super()
+
+    this.state = {
+      username: '',
+      password: '',
+    }
+    this.handleUsernameInput = this.handleUsernameInput.bind(this);
+    this.handlePasswordInput = this.handlePasswordInput.bind(this);
+    this.loginUser = this.loginUser.bind(this);
+  }
+
+  handleUsernameInput(event) {
+    this.setState({
+      username: event.target.value
+    })
+  }
+
+  handlePasswordInput(event) {
+    this.setState({
+      password: event.target.value
+    })
+  }
+
+  loginUser() {
+    console.log(`Logging in ${this.state.username} with password ${this.state.password}`)
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        <input
+          onChange={this.handleUsernameInput}
+          placeholder="Username"
+          value={this.state.username} />
+        <input
+          onChange={this.handlePasswordInput}
+          placeholder="Password"
+          value={this.state.password} />
+        <button
+          onClick={this.loginUser} >
+          Login
+            </button>
       </div>
-    );
+    )
   }
 }
 
